@@ -5,3 +5,4 @@ SAMPLES
 - Blinkly (C#): Blink an LED, aka Hello World "Maker Edition"
 - PushButton (C#): Basic push button sample to light an LED
 - GHI (C#): Sample app to test the capabilities of various Hats & Shields from GHI Electronics, including Gadgeteer
+- GHI (C#) Light & Temp: Measure ambient light & temperature using the GHI Electronics FezHat
