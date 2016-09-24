@@ -11,7 +11,11 @@
         <StackPanel Margin="12">
             <TextBlock Text="IoT Hub Test Client" Margin="0,0,0,12" Style="{ThemeResource HeaderTextBlockStyle}"/>
             <TextBox x:Name="txtMsg" Margin="0,12,0,12" PlaceholderText="Enter the message to send to IoT Hub" />
-            <Button x:Name="btnSend" Content="Send Message" Click="btnSend_Click"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnSend" Content="Send Message" Margin="0,0,12,0" Click="btnSend_Click"/>
+                <Button x:Name="btnReceive" Content="Wait for Message" Click="btnReceive_Click"/>
+            </StackPanel>
+            <TextBlock x:Name="lblReturn" Margin="0,12,0,0" Text="(No message received, click 'Wait for Message to check status)"/>
         </StackPanel>
     </Grid>
 </Page>

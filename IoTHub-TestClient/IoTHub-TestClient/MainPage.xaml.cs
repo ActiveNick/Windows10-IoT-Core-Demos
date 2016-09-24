@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,6 +38,18 @@ namespace IoTHub_TestClient
             {
                 await new Windows.UI.Popups.MessageDialog($"Oops, something went wrong: {ex.Message}").ShowAsync();
             }
+        }
+
+        private async void btnReceive_Click(object sender, RoutedEventArgs e)
+        {
+            string ret;
+            ret = await AzureIoTHub.ReceiveCloudToDeviceMessageAsync();
+
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                lblReturn.Text = ret;
+            });
         }
     }
 }
