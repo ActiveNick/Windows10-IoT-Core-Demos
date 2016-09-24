@@ -13,8 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace IoTHub_TestClient
 {
     /// <summary>
@@ -29,7 +27,15 @@ namespace IoTHub_TestClient
 
         private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            await AzureIoTHub.SendDeviceToCloudMessageAsync();
+            try
+            {
+                string str = txtMsg.Text;
+                await AzureIoTHub.SendDeviceToCloudMessageAsync(str);
+            }
+            catch (Exception ex)
+            {
+                await new Windows.UI.Popups.MessageDialog($"Oops, something went wrong: {ex.Message}").ShowAsync();
+            }
         }
     }
 }

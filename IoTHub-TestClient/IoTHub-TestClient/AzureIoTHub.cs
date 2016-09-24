@@ -18,20 +18,22 @@ static class AzureIoTHub
 
     // Refer to http://aka.ms/azure-iot-hub-vs-cs-wiki for more information on Connected Service for Azure IoT Hub
 
-    public static async Task SendDeviceToCloudMessageAsync()
+    /// <summary>
+    /// Sends a custom string message to an Azure IoT Hub
+    /// </summary>
+    public static async Task SendDeviceToCloudMessageAsync(string str)
     {
         var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
 
-#if WINDOWS_UWP
-        var str = "Hello, Cloud from a UWP C# app!";
-#else
-        var str = "Hello, Cloud from a C# app!";
-#endif
         var message = new Message(Encoding.ASCII.GetBytes(str));
 
         await deviceClient.SendEventAsync(message);
     }
 
+    /// <summary>
+    /// Receives a message from an Azure IoT HUb using the service-assisted communication pattern 
+    /// (aka Command & Control).
+    /// </summary>
     public static async Task<string> ReceiveCloudToDeviceMessageAsync()
     {
         var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);

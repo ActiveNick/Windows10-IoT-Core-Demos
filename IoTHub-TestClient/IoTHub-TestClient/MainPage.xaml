@@ -10,6 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="12">
             <TextBlock Text="IoT Hub Test Client" Margin="0,0,0,12" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBox x:Name="txtMsg" Margin="0,12,0,12" PlaceholderText="Enter the message to send to IoT Hub" />
             <Button x:Name="btnSend" Content="Send Message" Click="btnSend_Click"/>
         </StackPanel>
     </Grid>
