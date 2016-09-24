@@ -1,11 +1,19 @@
 # Windows10-IoT-Core-Demos
 Various demos for learning maker &amp; IoT projects on [Windows 10 IoT Core](http://dev.windows.com/iot) using UWP &amp; C#, Arduino, etc. The demos include a variety of original demos as well as official Microsoft & third-party samples I use frequently in conference & meetup talks.
 
-## SAMPLES
+## Samples
 - **Blinkly (C#)**: Blink an LED, aka Hello World "Maker Edition"
 - **PushButton (C#)**: Basic push button sample to light an LED
 - **GHI (C#)**: Sample app to test the capabilities of various Hats & Shields from GHI Electronics, including Gadgeteer
 - **GHI (C#) Light & Temp**: Measure ambient light & temperature using the GHI Electronics FezHat
+- **Iot Hub Test Client**: Simple IoT Test Client that sends custom messages to an Azure IoT Hub.
+
+## Geting an Azure Subscription
+Since some of these samples require an Azure subscription, many options to obtain a subscription:
+- [Get a free trial](https://azure.microsoft.com/en-us/free/) with $200 in Azure credits for 30 days.
+- Take the [Pay-As-You-Go option](https://azure.microsoft.com/en-us/offers/ms-azr-0003p/). You can actually [use IoT Hubs for free](https://azure.microsoft.com/en-us/pricing/details/iot-hub/) with up to 8,000 messages per day.
+- Get $25 per month in Azure credits for free for 12 months via [Visual Studio Dev Essentials](https://www.visualstudio.com/dev-essentials/).
+- If you have a startup or you're an independent entrepreneur, you can apply to [Microsoft BizSpark](http://aka.ms/bizsparkapply) to get up to 5 MSDN Enterprise Subscriptions for free, including $750 in Azure credits (across 5 users), completely for free for 3 years.
 
 ## VSLive Redmond Session Video
 You can watch one of my sessions on [Windows for Makers](https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-Live-Redmond-2016/W03) - covering development for Windows 10 IoT Core - recorded live at [Visual Studio Live](http://vslive.com) Redmond [right here on Channel 9](https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-Live-Redmond-2016/W03). It features some of the demos in this repository.
