@@ -29,7 +29,7 @@ namespace SendCloudToDevice
         private async static Task SendCloudToDeviceMessageAsync()
         {
             // The message we send to the device
-            var commandMessage = new Message(Encoding.ASCII.GetBytes("This is a Cloud to device message from Nick."));
+            var commandMessage = new Message(Encoding.ASCII.GetBytes("This is a second Cloud to device message from Nick in Anaheim."));
 
             // Specify that we'll expect a full delivery acknowledgement from the IoT device
             commandMessage.Ack = DeliveryAcknowledgement.Full;
