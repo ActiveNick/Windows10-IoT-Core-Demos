@@ -3,10 +3,10 @@ Various demos for learning maker &amp; IoT projects on [Windows 10 IoT Core](htt
 
 ## Samples
 - **Blinkly (C#)**: Blink an LED, aka Hello World "Maker Edition"
-- **PushButton (C#)**: Basic push button sample to light an LED
+- **PushButton (C#)**: Basic hardware push button sample to light an LED
 - **GHI (C#)**: Sample app to test the capabilities of various Hats & Shields from GHI Electronics, including Gadgeteer
 - **GHI (C#) Light & Temp**: Measure ambient light & temperature using the GHI Electronics FezHat
-- **Iot Hub Test Client**: Simple IoT Test Client that sends custom messages to an Azure IoT Hub.
+- **Iot Hub Test Client**: Simple IoT Test Client that sends custom messages to an Azure IoT Hub. Requires an Azure subscription (see below).
 
 ## Geting an Azure Subscription
 Since some of these samples require an Azure subscription, many options to obtain a subscription:
