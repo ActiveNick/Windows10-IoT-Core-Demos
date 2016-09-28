@@ -18,8 +18,6 @@
     THE SOFTWARE.
 -->
 
-
-
 <Page
     x:Class="PushButton.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -30,6 +28,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="Windows 10 IoT Core Push Button Demo" Margin="12" Style="{ThemeResource HeaderTextBlockStyle}"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Ellipse x:Name="ledEllipse" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
            <TextBlock x:Name="GpioStatus" Text="Waiting to initialize GPIO..." Margin="10,50,10,10" TextAlignment="Center" FontSize="26.667" />

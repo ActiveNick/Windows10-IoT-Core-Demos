@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
-
 using System;
+// Make sure to add the Windows IoT Extension SDK in project references
 using Windows.Devices.Gpio;
 using Windows.Media.SpeechSynthesis;
 using Windows.UI.Core;
@@ -12,6 +12,16 @@ namespace PushButton
 {
     public sealed partial class MainPage : Page
     {
+        private const int LED_PIN = 6;  // This is an output
+        private const int BUTTON_PIN = 5;  // This is an input
+        private GpioPin ledPin;
+        private GpioPin buttonPin;
+        private GpioPinValue ledPinValue = GpioPinValue.High;
+
+        // These are used for the "on screen" LED in the UI
+        private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
+        private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
+
         public MainPage()
         {
             InitializeComponent();
@@ -35,12 +45,16 @@ namespace PushButton
             // Initialize LED to the OFF state by first writing a HIGH value
             // We write HIGH because the LED is wired in a active LOW configuration
             ledPin.SetDriveMode(GpioPinDriveMode.Output);
-            ledPin.Write(GpioPinValue.High); 
+            ledPin.Write(GpioPinValue.High);
 
-            // Check if input pull-up resistors are supported
+            // Check if input pull-up resistors are supported, for more info
+            // see https://en.wikipedia.org/wiki/Pull-up_resistor
             if (buttonPin.IsDriveModeSupported(GpioPinDriveMode.InputPullUp))
+                // Configures the GPIO pin as high impedance with a pull-up resistor
+                // to the voltage charge connection (VCC).
                 buttonPin.SetDriveMode(GpioPinDriveMode.InputPullUp);
             else
+                // Configures the GPIO pin in floating mode, with high impedance
                 buttonPin.SetDriveMode(GpioPinDriveMode.Input);
 
             // Set a debounce timeout to filter out switch bounce noise from a button press
@@ -55,7 +69,7 @@ namespace PushButton
 
         private void buttonPin_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e)
         {
-            // toggle the state of the LED every time the button is pressed
+            // Toggle the state of the LED every time the button is pressed
             if (e.Edge == GpioPinEdge.FallingEdge)
             {
                 ledPinValue = (ledPinValue == GpioPinValue.Low) ?
@@ -63,7 +77,7 @@ namespace PushButton
                 ledPin.Write(ledPinValue);
             }
 
-            // need to invoke UI updates on the UI thread because this event
+            // Need to invoke UI updates on the UI thread because this event
             // handler gets invoked on a separate thread.
             var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 if (e.Edge == GpioPinEdge.FallingEdge)
@@ -71,23 +85,15 @@ namespace PushButton
                     ledEllipse.Fill = (ledPinValue == GpioPinValue.Low) ? 
                         redBrush : grayBrush;
                     GpioStatus.Text = "Button Pressed";
-                    ReadText(GpioStatus.Text);
                 }
                 else
                 {
                     GpioStatus.Text = "Button Released";
-                    ReadText(GpioStatus.Text);
                 }
+                // Use Speech Synthesis to read the GPIO status out loud
+                ReadText(GpioStatus.Text);
             });
         }
-
-        private const int LED_PIN = 6;
-        private const int BUTTON_PIN = 5;
-        private GpioPin ledPin;
-        private GpioPin buttonPin;
-        private GpioPinValue ledPinValue = GpioPinValue.High;
-        private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
-        private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
 
         // Quickly adds Text-to-Speech to the app using Cortana's default voice
         private async void ReadText(string mytext)
