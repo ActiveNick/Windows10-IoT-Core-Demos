@@ -5,16 +5,12 @@ using Microsoft.Azure.Devices.Client;
 
 static class AzureIoTHub
 {
-    //
     // Note: this connection string is specific to the device "NickPi2-FEZHAT". To configure other devices,
     // see information on iothub-explorer at http://aka.ms/iothubgetstartedVSCS
-    //
     const string deviceConnectionString = "HostName=NickIoTLab.azure-devices.net;DeviceId=NickPi2-FEZHAT;SharedAccessKey=vSMfOqde7kDycueME8274LIboBpeIsfKQmuUJahMBP0=";
 
-    //
-    // To monitor messages sent to device "NickPi2-FEZHAT" use iothub-explorer as follows:
+    // To monitor messages sent to device "NickPi2-FEZHAT" use the iothub-explorer CLI as follows:
     //    iothub-explorer HostName=NickIoTLab.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=rrnhLYK2lws2OzEeUAlcOnnhkOF2P+uQIcrV6k1XEd0= monitor-events "NickPi2-FEZHAT"
-    //
 
     // Refer to http://aka.ms/azure-iot-hub-vs-cs-wiki for more information on Connected Service for Azure IoT Hub
 

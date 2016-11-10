@@ -7,6 +7,10 @@ using Microsoft.Azure.Devices;
 
 namespace SendCloudToDevice
 {
+    /// <summary>
+    /// Console app that triggers a Cloud-to-Device message to be sent from an Azure IoT Hub
+    /// to a specific registered IoT client device.
+    /// </summary>
     class Program
     {
         static ServiceClient serviceClient;
@@ -26,10 +30,13 @@ namespace SendCloudToDevice
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Ask the IoT Hub to send a Cloud-to-Device message to a client device.
+        /// </summary>
         private async static Task SendCloudToDeviceMessageAsync()
         {
             // The message we send to the device
-            var commandMessage = new Message(Encoding.ASCII.GetBytes("This is a second Cloud to device message from Nick in Anaheim."));
+            var commandMessage = new Message(Encoding.ASCII.GetBytes("This is a Cloud to device message from Nick in a console app."));
 
             // Specify that we'll expect a full delivery acknowledgement from the IoT device
             commandMessage.Ack = DeliveryAcknowledgement.Full;
@@ -37,6 +44,9 @@ namespace SendCloudToDevice
             await serviceClient.SendAsync("NickPi2-FEZHAT", commandMessage);
         }
 
+        /// <summary>
+        /// Wait for and receive the ACK message from the IoT Hub.
+        /// </summary>
         private async static void ReceiveFeedbackAsync()
         {
             var feedbackReceiver = serviceClient.GetFeedbackReceiver();

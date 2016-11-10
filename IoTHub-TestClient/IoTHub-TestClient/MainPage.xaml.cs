@@ -18,7 +18,8 @@ using Windows.UI.Xaml.Navigation;
 namespace IoTHub_TestClient
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Simple test page that connects to an Azure IoT Hub for device-to-cloud
+    /// and cloud-to-device scenarios.
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -27,6 +28,9 @@ namespace IoTHub_TestClient
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Send a string to an Azure IoT Hub.
+        /// </summary>
         private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -40,11 +44,15 @@ namespace IoTHub_TestClient
             }
         }
 
+        /// <summary>
+        /// Puts the app in an async "wait" mode, ready to receive incoming messages from the IoT Hub.
+        /// </summary>
         private async void btnReceive_Click(object sender, RoutedEventArgs e)
         {
             string ret;
             ret = await AzureIoTHub.ReceiveCloudToDeviceMessageAsync();
 
+            // Use the dispatcher to display the message on the main UI thread
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
